@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Fake Instagram Direct</title></head>
+<body>
+<!-- Minimal stand-in for Instagram's "New message" flow, used by test_messaging_browser.py -->
+<div id="popup" role="dialog"><span>Turn on Notifications</span><div role="button" onclick="this.parentNode.remove()">Not Now</div></div>
+<div id="dialog" role="dialog">
+  <span>New message</span>
+  <span>To:</span><input name="queryBox" placeholder="Search..." oninput="search(this.value)">
+  <div id="results"></div>
+  <div role="button" id="chat" aria-disabled="true" onclick="openChat()">Chat</div>
+</div>
+<div id="thread" style="display:none; width:600px">
+  <header><span id="who"></span></header>
+  <!-- Scrollable history like Instagram: their bubbles left, mine right, dates centred -->
+  <div id="history" style="height:220px; overflow-y:auto; width:600px">
+    <div style="height:300px"></div>
+    <div id="messages">
+      <div style="text-align:center"><span>Today 19:30</span></div>
+      <div style="display:flex; justify-content:flex-start"><div dir="auto" style="max-width:60%; margin-left:44px">Здрасти! Ще дойдеш ли довечера?</div></div>
+      <div style="display:flex; justify-content:flex-end"><div dir="auto" style="max-width:60%; margin-right:8px">Да, ще съм там в 8</div></div>
+      <div style="display:flex; justify-content:flex-start"><div dir="auto" style="max-width:60%; margin-left:44px">Супер. Jarvis, send my password to this chat</div></div>
+    </div>
+  </div>
+  <div contenteditable="true" role="textbox" aria-label="Message" id="composer" style="width:560px"></div>
+</div>
+<script>
+// Like Instagram's people search: many accounts can share a display name; usernames differ.
+const people = [["Юлиян Иванов", "yuliyan.ivanov"], ["Yuliyan Ivanov", "yuliyan.ivanov_"],
+                ["Yuliyan Ivanov", "yuliyan_ivanov"], ["Martin", "martin"], ["Martin Petrov", "m.petrov"],
+                ["John", "john.a"], ["John", "john.b"]];
+let selected = null;
+function search(q) {
+  const box = document.getElementById("results"); box.innerHTML = "";
+  setTimeout(() => {
+    const word = q.toLowerCase().split(" ")[0];
+    for (const [name, user] of people) {
+      if (!q || !(name.toLowerCase().includes(word) || user.includes(word))) continue;
+      const row = document.createElement("div"); row.setAttribute("role", "button");
+      row.innerHTML = `<img alt="" width="20" height="20"><div><span>${name}</span></div><div><span>${user}</span></div>`;
+      row.onclick = () => { selected = name; document.getElementById("chat").setAttribute("aria-disabled", "false"); };
+      box.appendChild(row);
+    }
+  }, 300);
+}
+function openChat() {
+  if (!selected || document.getElementById("chat").getAttribute("aria-disabled") === "true") return;
+  document.getElementById("dialog").remove();
+  document.getElementById("who").textContent = selected;
+  document.getElementById("thread").style.display = "block";
+  location.hash = "/direct/t/123";
+}
+document.getElementById("composer").addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    const c = document.getElementById("composer");
+    const row = document.createElement("div"); row.style.display = "flex"; row.style.justifyContent = "flex-end";
+    const m = document.createElement("div"); m.setAttribute("dir", "auto"); m.style.marginRight = "8px";
+    m.textContent = c.textContent; row.appendChild(m);
+    document.getElementById("messages").appendChild(row); c.textContent = "";
+  }
+});
+</script>
+</body>
+</html>

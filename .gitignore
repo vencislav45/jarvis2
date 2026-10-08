@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+logs/
+config/api_keys.json
+config/certs/*.key
+config/bridge_state.json
+memory/long_term.json
+memory/conversation_history.json
+tests/live-smoke-*/
+screen.png

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>(2) Inbox • Direct</title>
+<style>
+  body { margin: 0; font-family: sans-serif; }
+  nav a { display: block; height: 40px; position: relative; }
+  .row { height: 72px; display: flex; align-items: center; cursor: pointer; }
+  .text { display: flex; flex-direction: column; flex: 1; }
+  .name, .preview { font-weight: 600; }          /* like the real site: everything semibold */
+  .preview { color: #737373; }
+  .unread .preview { color: #000; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: rgb(0, 149, 246); margin-right: 12px; }
+  .badge { position: absolute; right: 0; top: 0; background: red; color: white; border-radius: 9px; padding: 0 5px; }
+</style></head>
+<body>
+<!-- Minimal stand-in for Instagram's /direct/inbox/, used by test_messaging_browser.py.
+     Unread rows are marked only by a blue dot (bold is used on every row, so it carries no meaning). -->
+<nav style="position:absolute; left:0; top:0; width:72px">
+  <a role="link" href="/">Home</a>
+  <a role="link" href="/direct/inbox/"><span>Messages</span><span class="badge">2</span></a>
+</nav>
+<div style="position:absolute; left:80px; top:0; width:360px">
+  <div role="tablist"><span role="tab">Primary</span> <span role="tab">General</span>
+    <a href="/direct/requests/">Requests (1)</a></div>
+</div>
+<div id="list" style="position:absolute; left:80px; top:30px; width:360px; height:380px; overflow-y:auto">
+  <div class="row unread" role="button"><div class="text"><span dir="auto" class="name">Yuliyan Ivanov</span>
+    <span dir="auto" class="preview">Ще дойдеш ли довечера? · 5m</span></div><div class="dot"></div></div>
+  <div class="row" role="button"><div class="text"><span dir="auto" class="name">Martin</span>
+    <span dir="auto" class="preview">You: Видеото е готово · 2h</span></div></div>
+  <div class="row unread" role="button"><div class="text"><span dir="auto" class="name">Mom</span>
+    <span dir="auto" class="preview">Обади се като можеш · 3h</span></div><div class="dot"></div></div>
+  <div class="row" role="button"><div class="text"><span dir="auto" class="name">John</span>
+    <span dir="auto" class="preview">ok · 1d</span></div></div>
+  <div style="height:400px"></div>
+</div>
+</body>
+</html>

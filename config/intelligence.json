@@ -1,0 +1,6 @@
+{
+  "model": "gemini-3.8-flash",
+  "max_rounds": 24,
+  "max_actions": 48,
+  "request_timeout_seconds": 45
+}

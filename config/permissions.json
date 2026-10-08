@@ -1,0 +1,4 @@
+{
+  "_comment": "Tools listed in auto_approve_medium run MEDIUM-risk actions without asking (e.g. \"file_controller\"). HIGH-risk actions (purchases, security changes, destructive commands) always ask.",
+  "auto_approve_medium": []
+}

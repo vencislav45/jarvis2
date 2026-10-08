@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "Jarvis Bridge",
+  "version": "1.0.0",
+  "description": "Lets your local Jarvis assistant open, read and act in tabs of this Chrome (with your accounts). Connects only to 127.0.0.1.",
+  "permissions": ["debugger", "tabs", "alarms"],
+  "background": { "service_worker": "background.js" },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuJGFWSp8J8xoitZCKKt7BYPKkKV8o53Fi9+GFU7os7w9wCsFYIegRpiesU6x41s1L7pk+LZQKxVLSYV3WzlStBvx0WMaCBE6qfgCu7Q1CdLfqsYXJPsRD3vdQ0ZNHj6apzqf3MjJB7qWX9JcWQOJ65KcPBT3YektljKe5HzcprjTu9tOAGJciRuhgzpMFWTyc5v30H82/mRMDQ6bwvRKZg1UiiU4EnWEd1rRSFUT6BLEob/scN0E5M0eV56jB/m5FeYFStxCbF3wg/MFbZwCNZA5Vvj4QeD1P2En4bz/p+ZkPaaSijvBYmaPfXLDokX6UYteVXtPDJiFYZfyqxVHvQIDAQAB"
+}
